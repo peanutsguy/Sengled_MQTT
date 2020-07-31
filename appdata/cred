@@ -1,0 +1,5 @@
+{
+    "user":"[Sengled User Email]",
+    "pswd":"[Sengled User Password]",
+    "mqtt":"[MQTT Broker IP/FQDN]"
+}
