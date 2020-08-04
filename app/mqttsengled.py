@@ -8,11 +8,6 @@ j=json.load(f)
 host=j["mqtt"]
 
 def on_connect(client, userdata, flags, rc):
-    api = sengled.api(
-        username=j["user"],
-        password=j["pswd"],
-        session_path="/config/sengled.pickle"
-    )
     device = api.get_device_details()
     for entry in device:
         devid = entry.id
@@ -27,11 +22,6 @@ def on_connect(client, userdata, flags, rc):
     
 
 def on_message(client, userdata, msg):
-    api = sengled.api(
-        username=j["user"],
-        password=j["pswd"],
-        session_path="/config/sengled.pickle"
-    )
     mensaje = msg.payload.decode("utf-8")
     canal = msg.topic
     foco = canal.split('/')[1]
@@ -61,8 +51,7 @@ def on_message(client, userdata, msg):
 
 api = sengled.api(
     username=j["user"],
-    password=j["pswd"],
-    session_path="/config/sengled.pickle"
+    password=j["pswd"]
 )
 
 i = 0
