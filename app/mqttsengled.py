@@ -4,6 +4,11 @@ import yaml
 import paho.mqtt.client as mqtt
 
 def on_connect(client, userdata, flags, rc):
+    api = sengled.api(
+        username=j["user"],
+        password=j["pswd"],
+        session_path="/config/sengled.pickle"
+    )
     device = api.get_device_details()
     for entry in device:
         devid = entry.id
@@ -18,6 +23,11 @@ def on_connect(client, userdata, flags, rc):
     
 
 def on_message(client, userdata, msg):
+    api = sengled.api(
+        username=j["user"],
+        password=j["pswd"],
+        session_path="/config/sengled.pickle"
+    )
     mensaje = msg.payload.decode("utf-8")
     canal = msg.topic
     foco = canal.split('/')[1]
@@ -52,7 +62,7 @@ host=j["mqtt"]
 api = sengled.api(
     username=j["user"],
     password=j["pswd"],
-    session_path="sengled.pickle"
+    session_path="/config/sengled.pickle"
 )
 
 i = 0
