@@ -3,6 +3,10 @@ import json
 import yaml
 import paho.mqtt.client as mqtt
 
+f=open("/config/cred","r")
+j=json.load(f)
+host=j["mqtt"]
+
 def on_connect(client, userdata, flags, rc):
     api = sengled.api(
         username=j["user"],
@@ -54,10 +58,6 @@ def on_message(client, userdata, msg):
             client.publish(bstatus,"ON")
         else:
             client.publish(bstatus,"OFF")
-
-f=open("/config/cred","r")
-j=json.load(f)
-host=j["mqtt"]
 
 api = sengled.api(
     username=j["user"],
