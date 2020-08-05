@@ -1,3 +1,5 @@
-sengled-client
+requests
 paho-mqtt
 pyyaml
+pickle
+time
